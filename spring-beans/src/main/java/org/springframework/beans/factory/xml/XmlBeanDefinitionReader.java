@@ -62,7 +62,7 @@ import org.springframework.util.xml.XmlValidationModeDetector;
  * <p>This class loads a DOM document and applies the BeanDefinitionDocumentReader to it.
  * The document reader will register each bean definition with the given bean factory,
  * talking to the latter's implementation of the
- * {@link org.springframework.beans.factory.support.BeanDefinitionRegistry} interface.
+ * {@link org.springframework.beans.factory.support.BeanDefinitiConstructorResolveronRegistry} interface.
  *
  * @author Juergen Hoeller
  * @author Rob Harrop
@@ -317,6 +317,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 			logger.trace("Loading XML bean definitions from " + encodedResource);
 		}
 
+		//记录已经加载的资源
 		Set<EncodedResource> currentResources = this.resourcesCurrentlyBeingLoaded.get();
 		if (currentResources == null) {
 			currentResources = new HashSet<>(4);

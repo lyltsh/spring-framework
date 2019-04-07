@@ -107,6 +107,7 @@ public class SimpleInstantiationStrategy implements InstantiationStrategy {
 			final Constructor<?> ctor, Object... args) {
 
 		if (!bd.hasMethodOverrides()) {
+			//没有被覆盖或者动态代理，则直接使用反射方式进行实例化
 			if (System.getSecurityManager() != null) {
 				// use own privileged to change accessibility (when security is on)
 				AccessController.doPrivileged((PrivilegedAction<Object>) () -> {
@@ -117,6 +118,7 @@ public class SimpleInstantiationStrategy implements InstantiationStrategy {
 			return BeanUtils.instantiateClass(ctor, args);
 		}
 		else {
+			// 需要使用动态代理方式进行实例化
 			return instantiateWithMethodInjection(bd, beanName, owner, ctor, args);
 		}
 	}
